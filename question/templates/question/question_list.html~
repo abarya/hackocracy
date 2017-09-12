@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>hackocracy</title></head>
+
+<body>
+{%for question in questions%}
+<div>
+	<a style="font-size:36px" href=""> {{question.title}}</a>
+	<p> published on: {{question.published_date}}</p>
+	<p> {{question.description}}</p>
+</div>
+
+{%endfor%}
+</body>
+
+
+
+
+</html>

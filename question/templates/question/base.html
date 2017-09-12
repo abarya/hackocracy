@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<html>
+<head>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="{% static 'css/question.css' %}">
+<title>hackocracy</title></head>
+
+<body>
+    <div class="page-header">
+        <h1><a href="https://github.com/chhavip/Git-Guide" target="_blank">Hackocracy-A site for tax payers</a></h1>
+        <a href="{% url 'question_new' %}" class="top-menu" target="_blank"><span class="glyphicon glyphicon-plus"></span></a>    
+    </div>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+</html>
