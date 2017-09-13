@@ -1,28 +1,15 @@
 {% extends 'question/base.html' %}
-{% load staticfiles %}
-<html>
-<head>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="{% static 'css/question.css' %}">
-<title>hackocracy</title></head>
 
-<body>
-	{% block content %}
-		{%for question in questions%}
-		<div class="question">
-			<h1><a style="font-size:36px" href=""> {{question.title}}</a></h1>
-			<div class="date">
-			<p> published on: {{question.published_date}}</p>
-			</div>
-			<p> {{question.description}}</p>
+{% block content %}
+	{%for question in questions%}
+	<div class="question">
+		<h1><a style="font-size:36px" href=""> {{question.title}}</a></h1>
+		<div class="date">
+		<p> published on: {{question.published_date}}</p>
+		<p> <b>Author:</b> {{question.author}}</p>
 		</div>
+		<p> {{question.description}}</p>
+	</div>
 
-		{%endfor%}
-	{% endblock %}	
-</body>
-
-
-
-
-</html>
+	{%endfor%}
+{% endblock %}	
