@@ -1,8 +1,9 @@
-<html>
-	<head>
-		<title>New Answer</title>
-	</head>
-	<body>
+{% extends 'question/base.html' %}
+
+{% block content %}
+	<h1 class="row"> New Question</h1>
+	<form method="POST" class="question-form">{% csrf_token %}
 		{{form.as_p}}
-	</body>	
-</html>
+		<button type="submit" class="save btn btn-default"> Save</button>
+	</form>
+{% endblock %}
