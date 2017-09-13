@@ -5,20 +5,26 @@
 <h2>{{question.title}}</h2>
 
 
+<ul class="list-group">
+    {% for ans in question.answer_set.all %}
+  <li class="list-group-item">{{ ans.ans_desc}}</li>
+    {% endfor %}
+</ul>
 
-{% for ans in question.answer_set.all %}
-<p1>{{ans.ans_desc}}</p1><br>
-{% endfor %}
+<br><br><br>
 
-<fieldset>
-    <form method="post" action = "{% url 'question:add_ans' %}">
+
+    <form method="post" action = "{% url 'question:add_ans' %}" class="question-form">
         {% csrf_token %}
-        <p>ANS: </p>
-        <input type="text" name = "ans">
+
+        <div class = "form-group">
+        <label for="ans">YOUR VIEWS</label>
+         <textarea name = "ans" id="ans" class="form-control" rows="3"></textarea>
+         </div>
         <input type="hidden" name="_ques" value="{{ question.id }}">
-        <input type="submit" value="add">
+        <input type="submit" class="save btn btn-default" value="SUBMIT">
     </form>
-</fieldset>
+
 
 
 {% endblock %}
