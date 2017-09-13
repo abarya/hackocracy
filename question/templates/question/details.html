@@ -1,0 +1,28 @@
+{% extends 'question/base.html' %}
+
+{% block content %}
+
+<h2>{{question.title}}</h2>
+
+
+
+{% for ans in question.answer_set.all %}
+<p1>{{ans.ans_desc}}</p1><br>
+{% endfor %}
+
+<fieldset>
+    <form method="post" action = "{% url 'question:add_ans' %}">
+        {% csrf_token %}
+        <p>ANS: </p>
+        <input type="text" name = "ans">
+        <input type="hidden" name="_ques" value="{{ question.id }}">
+        <input type="submit" value="add">
+    </form>
+</fieldset>
+
+
+{% endblock %}
+
+
+
+

@@ -3,7 +3,7 @@
 {% block content %}
 	{%for question in questions%}
 	<div class="question">
-		<h1><a style="font-size:36px" href=""> {{question.title}}</a></h1>
+		<h1><a style="font-size:36px" href="{%url 'question:details' question.id %}"> {{question.title}}</a></h1>
 		<div class="date">
 		<p> published on: {{question.published_date}}</p>
 		<p> <b>Author:</b> {{question.author}}</p>
