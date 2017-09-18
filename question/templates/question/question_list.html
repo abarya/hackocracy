@@ -1,17 +1,26 @@
 {% extends 'question/base.html' %}
 
 {% block content %}
+<div>
+<div class="list-group container col-xs-9 col-xs-push-3">
 	{%for question in questions%}
-    <div class="list-group">
-   <a href="{% url 'question:details' question.id%}" data-background-color="red" class="list-group-item list-group-item-action flex-column align-items-start active">
+
+
+        <a href="{% url 'question:details' question.id%}" data-background-color="red" class="list-group-item ">
     <div class="d-flex w-100 justify-content-between">
       <h3 class="mb-1">{{question.title}}</h3>
       <small>{{question.published_date}}</small>
     </div>
     <p class="mb-1">{{question.description}}</p>
     <small>Author:{{question.author}}</small>
-  </a>
-    </div>
+        </a>
+</br>
+
 
 	{%endfor%}
+</div>
+<div class = "col-xs-3 col-xs-push-3">
+    <p align="right">HELLO</p>
+</div>
+</div>
 {% endblock %}	
