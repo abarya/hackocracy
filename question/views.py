@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate,login
 from django.views.generic import View
 from django.template import loader
 
-from .forms import UserForm
+from .forms import UserFormSignUp,UserFormSignIn
 
 # Create your views here.
 
@@ -52,18 +52,16 @@ def add_ans(request):
     #return HttpResponse(template.render(context, request))
 
 class UserFormView(View):
-    form_class=UserForm
+    form_class=UserFormSignUp
     template_name='question/registration_form.html'
 
     #displays blank form
     def get(self,request):
-        print "inside get"
-        form=self.form_class(None)
+        form=self.form_class
         return render(request,self.template_name,{'form':form})
 
     #process from data
     def post(self,request):
-        print "inside post"
         form = self.form_class(request.POST)
 
         if form.is_valid():
@@ -73,6 +71,7 @@ class UserFormView(View):
             #cleaned or normalized data
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+
             user.set_password(password)
             user.save()
 
@@ -86,3 +85,37 @@ class UserFormView(View):
                     return redirect('/')
                     
         return render(request,self.template_name,{'form':form})         
+
+class LoginFormView(View):
+    form_class=UserFormSignIn
+    template_name='question/registration_form.html'
+
+    #displays blank form
+    def get(self,request):
+        form=self.form_class
+        return render(request,self.template_name,{'form':form,
+                                                  'login':"LogIn"})
+
+    #process from data
+    def post(self,request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+
+            user = form.save(commit=False)
+
+            #cleaned or normalized data
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            #returns User objects if credentials are correct
+            user = authenticate(username=username,password=password)
+
+            if user is not None:
+
+                if user.is_active:
+                    login(request,user)
+                    return redirect('/')
+                    
+        return render(request,self.template_name,{'form':form,
+                                                   'login':"LogIn",})         

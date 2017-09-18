@@ -4,6 +4,10 @@
 	<h1 class="row"> regisration form</h1>
 	<form method="POST" class="registration-form">{% csrf_token %}
 		{{form.as_p}}
-		<button type="submit" class="save btn btn-default"> Save</button>
+		{% if login %}
+			<button type="submit" class="save btn btn-default">LogIn</button>
+		{% else %}
+			<button type="submit" class="save btn btn-default">SignUp</button>
+		{%endif%}	
 	</form>
 {% endblock %}	
