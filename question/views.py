@@ -57,11 +57,13 @@ class UserFormView(View):
 
     #displays blank form
     def get(self,request):
+        print "inside get"
         form=self.form_class(None)
         return render(request,self.template_name,{'form':form})
 
     #process from data
     def post(self,request):
+        print "inside post"
         form = self.form_class(request.POST)
 
         if form.is_valid():
@@ -81,6 +83,6 @@ class UserFormView(View):
 
                 if user.is_active:
                     login(request,user)
-                    return redirect(question_list)
+                    return redirect('/')
                     
         return render(request,self.template_name,{'form':form})         
