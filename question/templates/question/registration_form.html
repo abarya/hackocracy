@@ -2,12 +2,38 @@
 
 {% block content %}
 	<h1 class="row"> regisration form</h1>
-	<form method="POST" class="registration-form">{% csrf_token %}
-		{{form.as_p}}
+
+	<form method="POST" class="question-form" autocomplete="off">{% csrf_token %}
+    <div class="container">
+		<fieldset>
+        <legend>{{ title }}</legend>
+
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="control-group error">
+                    <label class="control-label">{{ field.label }}</label>
+                    <div class="controls">{{ field }}
+                        <span class="help-inline">
+                            {% for error in  field.errors %}{{ error }}{% endfor %}
+                        </span>
+                    </div>
+                </div>
+            {% else %}
+                <div class="form-group">
+                    <label >{{ field.label }}</label>
+                    <div>{{ field }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    </fieldset>
+    </div>
 		{% if login %}
 			<button type="submit" class="save btn btn-default">LogIn</button>
 		{% else %}
 			<button type="submit" class="save btn btn-default">SignUp</button>
-		{%endif%}	
+		{%endif%}
+
 	</form>
 {% endblock %}	
